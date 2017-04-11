@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.zhang.definitionview_demo.MainActivity">
+
+    <!--<com.zhang.definitionview_demo.view.CustomTitleView-->
+    <!--android:layout_width="200dp"-->
+    <!--android:layout_height="100dp"-->
+    <!--android:padding="20dp"-->
+    <!--app:titleText="AB"-->
+    <!--app:titleTextColor="@color/colorPrimary"-->
+    <!--app:titleTextSize="40sp"/>-->
+
+    <!--<com.zhang.definitionview_demo.view.CustomImageView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:padding="10dp"-->
+    <!--app:image="@mipmap/ic_launcher"-->
+    <!--app:imageScaleType="center"-->
+    <!--app:titleText="hello andorid ! "-->
+    <!--app:titleTextColor="#ff0000"-->
+    <!--app:titleTextSize="30sp"  />-->
+
+    <!--<com.zhang.definitionview_demo.view.CustomImageView-->
+    <!--android:layout_width="100dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:padding="10dp"-->
+    <!--app:image="@mipmap/ic_launcher"-->
+    <!--app:imageScaleType="center"-->
+    <!--app:titleText="helloworldwelcome"-->
+    <!--app:titleTextColor="#00ff00"-->
+    <!--app:titleTextSize="20sp"  />-->
+
+    <!--<com.zhang.definitionview_demo.view.CustomImageView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:padding="10dp"-->
+    <!--app:image="@drawable/cat"-->
+    <!--app:imageScaleType="center"-->
+    <!--app:titleText="妹子~"-->
+    <!--app:titleTextColor="#ff0000"-->
+    <!--app:titleTextSize="12sp"  />-->
+
+    <com.zhang.definitionview_demo.view.CustomProgressBar
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:circleWidth="30dp"
+        app:firstColor="#CCFFFF"
+        app:secondColor="#CCCCFF"
+        app:speed="5" />
+
+
+    <com.zhang.definitionview_demo.view.CustomVolumControlBar
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        app:bg="@mipmap/ic_launcher"
+        app:circleWidth="10dp"
+        app:dotCount="12"
+        app:firstColor="#CCFFFF"
+        app:secondColor="#CCCCFF"
+        app:splitSize="15" />
+
+    <com.zhang.definitionview_demo.view.VoiceView
+        android:layout_width="120dp"
+        android:layout_height="50dp" />
+
+
+</LinearLayout>
