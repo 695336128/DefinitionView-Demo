@@ -1,5 +1,6 @@
 package com.zhang.definitionview_demo.view;
 
+import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -16,6 +17,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Interpolator;
 
 import com.zhang.definitionview_demo.R;
 
@@ -380,7 +382,7 @@ public class MiClockView extends View {
                 getCanvasTranslate(event);
                 break;
             case MotionEvent.ACTION_UP:
-
+                startShakeAnim();
                 break;
         }
         return true;
@@ -598,6 +600,46 @@ public class MiClockView extends View {
         mHourHandPaint.setStrokeWidth(0.01f * mRadius);
         mCanvas.drawArc(mCircleRectF, 0, 360, false, mHourHandPaint);
         mCanvas.restore();
+    }
+
+    /**
+     * 时钟晃动动画
+     */
+    private void startShakeAnim(){
+        final String cameraRotateXName = "cameraRotateX";
+        final String cameraRotateYName = "cameraRotateY";
+        final String canvasTranslateXName = "canvasTranslateX";
+        final String canvasTranslateYName = "canvasTranslateY";
+
+        // PropertyValuesHolder这个类可以先将动画属性和值暂时的存储起来，后一起执行
+        PropertyValuesHolder cameraRotateXHolder = PropertyValuesHolder.ofFloat(cameraRotateXName,mCameraRotateX, 0);
+        PropertyValuesHolder cameraRotateYHolder = PropertyValuesHolder.ofFloat(cameraRotateYName,mCameraRotateY,0);
+        PropertyValuesHolder canvasTranslateXHolder = PropertyValuesHolder.ofFloat(canvasTranslateXName,
+                mCanvasTranslateX, 0);
+        PropertyValuesHolder canvasTranslateYHolder = PropertyValuesHolder.ofFloat(canvasTranslateYName,
+                mCanvasTranslateY, 0);
+
+        mShakeAnim = ValueAnimator.ofPropertyValuesHolder(cameraRotateXHolder, cameraRotateYHolder,
+                canvasTranslateXHolder, canvasTranslateYHolder);
+        mShakeAnim.setInterpolator(new Interpolator() {
+            @Override
+            public float getInterpolation(float input) {
+                // http://inloop.github.io/interpolator/
+                float f = 0.571429f;
+                return (float) (Math.pow(2, -2 * input) * Math.sin((input - f / 4) * (2 * Math.PI) / f) + 1);
+            }
+        });
+        mShakeAnim.setDuration(1000);
+        mShakeAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mCameraRotateX = (float) animation.getAnimatedValue(cameraRotateXName);
+                mCameraRotateY = (float) animation.getAnimatedValue(cameraRotateYName);
+                mCanvasTranslateX = (float) animation.getAnimatedValue(canvasTranslateXName);
+                mCanvasTranslateY = (float) animation.getAnimatedValue(canvasTranslateYName);
+            }
+        });
+        mShakeAnim.start();
     }
 
 }
