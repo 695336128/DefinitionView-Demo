@@ -66,5 +66,10 @@
 
     </declare-styleable>
 
+    <declare-styleable name="Camera3D">
+        <attr name="image"/>
+        <attr name="bg" />
+    </declare-styleable>
+
 
 </resources>
