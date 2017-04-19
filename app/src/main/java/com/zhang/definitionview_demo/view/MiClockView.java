@@ -347,11 +347,11 @@ public class MiClockView extends View {
         mScaleLength = 0.12f * mRadius;// 根据比例确定刻度线长度
         mScaleArcPaint.setStrokeWidth(mScaleLength);
         mScaleLinePaint.setStrokeWidth(0.012f * mRadius);
-         mMaxCanvasTranslate = 0.02f * mRadius;
+        mMaxCanvasTranslate = 0.02f * mRadius;
         // 梯度扫描渐变，以(w/2,h/2)为中心点，两种起止颜色梯度渐变
         // float数组表示，[0,0.75)为起始颜色所占比例，[0.75,1}为起止颜色渐变所占比例
-        mSweepGradient = new SweepGradient(w / 2, h / 2, new int[]{mDarkColor, mLightColor},
-                new float[]{0.75f, 1});
+        mSweepGradient = new SweepGradient(w / 2, h / 2, new int[] { mDarkColor, mLightColor },
+                new float[] { 0.75f, 1 });
     }
 
     @Override
@@ -370,20 +370,20 @@ public class MiClockView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                if (mShakeAnim != null && mShakeAnim.isRunning()) {
-                    mShakeAnim.cancel();
-                }
-                getCameraRotate(event);
-                getCanvasTranslate(event);
-                break;
-            case MotionEvent.ACTION_MOVE:
-                getCameraRotate(event);
-                getCanvasTranslate(event);
-                break;
-            case MotionEvent.ACTION_UP:
-                startShakeAnim();
-                break;
+        case MotionEvent.ACTION_DOWN:
+            if (mShakeAnim != null && mShakeAnim.isRunning()) {
+                mShakeAnim.cancel();
+            }
+            getCameraRotate(event);
+            getCanvasTranslate(event);
+            break;
+        case MotionEvent.ACTION_MOVE:
+            getCameraRotate(event);
+            getCanvasTranslate(event);
+            break;
+        case MotionEvent.ACTION_UP:
+            startShakeAnim();
+            break;
         }
         return true;
     }
@@ -418,7 +418,6 @@ public class MiClockView extends View {
         mCanvasTranslateX = percentArr[0] * mMaxCanvasTranslate;
         mCanvasTranslateY = percentArr[1] * mMaxCanvasTranslate;
     }
-
 
     /**
      * 获取一个操作旋转或位移大小的比例
@@ -459,7 +458,7 @@ public class MiClockView extends View {
         // camera在view左上角那个点，故旋转默认是以左上角为中心旋转
         // 故在动作之前pre将matrix向左移动getWidth()/2长度，向上移动getHeight()/2长度
         mCameraMatrix.preTranslate(-getWidth() / 2, -getHeight() / 2);
-        mCameraMatrix.postTranslate(getWidth() /2 , getHeight()/2) ;
+        mCameraMatrix.postTranslate(getWidth() / 2, getHeight() / 2);
         mCanvas.concat(mCameraMatrix);
     }
 
@@ -553,8 +552,7 @@ public class MiClockView extends View {
      */
     private void drawMinuteHand() {
         mCanvas.save();
-        mCanvas.translate(mCanvasTranslateX * 1.2f, mCanvasTranslateY *
-                1.2f);
+        mCanvas.translate(mCanvasTranslateX * 1.2f, mCanvasTranslateY * 1.2f);
         mCanvas.rotate(mMinuteDegree, getWidth() / 2, getHeight() / 2);
         mMinuteHandPath.reset();
         float offset = mPaddingTop + mTextRect.height() / 2;
@@ -580,8 +578,7 @@ public class MiClockView extends View {
      */
     private void drawHourHand() {
         mCanvas.save();
-         mCanvas.translate(mCanvasTranslateX * 1.2f, mCanvasTranslateY *
-         1.2f);
+        mCanvas.translate(mCanvasTranslateX * 1.2f, mCanvasTranslateY * 1.2f);
         mCanvas.rotate(mHourDegree, getWidth() / 2, getHeight() / 2);
         mHourHandPath.reset();
         float offset = mPaddingTop + mTextRect.height() / 2;
@@ -605,15 +602,15 @@ public class MiClockView extends View {
     /**
      * 时钟晃动动画
      */
-    private void startShakeAnim(){
+    private void startShakeAnim() {
         final String cameraRotateXName = "cameraRotateX";
         final String cameraRotateYName = "cameraRotateY";
         final String canvasTranslateXName = "canvasTranslateX";
         final String canvasTranslateYName = "canvasTranslateY";
 
         // PropertyValuesHolder这个类可以先将动画属性和值暂时的存储起来，后一起执行
-        PropertyValuesHolder cameraRotateXHolder = PropertyValuesHolder.ofFloat(cameraRotateXName,mCameraRotateX, 0);
-        PropertyValuesHolder cameraRotateYHolder = PropertyValuesHolder.ofFloat(cameraRotateYName,mCameraRotateY,0);
+        PropertyValuesHolder cameraRotateXHolder = PropertyValuesHolder.ofFloat(cameraRotateXName, mCameraRotateX, 0);
+        PropertyValuesHolder cameraRotateYHolder = PropertyValuesHolder.ofFloat(cameraRotateYName, mCameraRotateY, 0);
         PropertyValuesHolder canvasTranslateXHolder = PropertyValuesHolder.ofFloat(canvasTranslateXName,
                 mCanvasTranslateX, 0);
         PropertyValuesHolder canvasTranslateYHolder = PropertyValuesHolder.ofFloat(canvasTranslateYName,
