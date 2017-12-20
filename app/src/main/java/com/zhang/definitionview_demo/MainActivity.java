@@ -34,11 +34,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-        // WindowManager.LayoutParams.FLAG_SECURE);
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         initView();
+        // 123123231
     }
 
     private void initView() {
