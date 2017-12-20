@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         initView();
         // 123123231
+        // 11231231
+        // 分支test
     }
 
     private void initView() {
