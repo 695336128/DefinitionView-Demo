@@ -1,6 +1,7 @@
 package com.zhang.definitionview_demo.view;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -22,21 +23,37 @@ public class DrawingWithBezier extends View {
 
     private final Path mPath = new Path();
 
+    private Bitmap bitmapBuffer;
+
+    private Canvas bitmapCanvas;
+
     public DrawingWithBezier(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mGesturePaint.setAntiAlias(true);
-        mGesturePaint.setStyle(Paint.Style.STROKE);
-        mGesturePaint.setStrokeWidth(5);
+        mGesturePaint.setAntiAlias(true); // 抗锯齿
+        mGesturePaint.setStyle(Paint.Style.STROKE); // 空心
+        mGesturePaint.setStrokeWidth(5); // 线的粗细程度
         mGesturePaint.setColor(Color.WHITE);
     }
 
     public DrawingWithBezier(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public DrawingWithBezier(Context context) {
-        this(context,null);
+        this(context, null);
 
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        if (bitmapBuffer == null) {
+            int width = getMeasuredWidth();
+            int height = getMeasuredHeight();
+            // 新建bitmap对象
+            bitmapBuffer = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+            bitmapCanvas = new Canvas(bitmapBuffer);
+        }
     }
 
     @Override
@@ -60,6 +77,8 @@ public class DrawingWithBezier extends View {
         super.onDraw(canvas);
         // 通过画布绘制多点形成的图形
         canvas.drawPath(mPath, mGesturePaint);
+        bitmapCanvas.drawPath(mPath, mGesturePaint);
+        canvas.drawBitmap(bitmapBuffer, 0, 0, null);
     }
 
     // 手指点下屏幕时调用

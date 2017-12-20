@@ -3,13 +3,11 @@
 
     <!-- 小米时钟 -->
     <declare-styleable name="MiClockView">
-        <attr name="backgroundColor" format="color"/>
+        <attr name="backgroundColor" format="color" />
         <attr name="lightColor" format="color" />
         <attr name="darkColor" format="color" />
         <attr name="textSize" format="dimension" />
     </declare-styleable>
-
-
 
 
     <attr name="titleText" format="string" />
@@ -51,7 +49,7 @@
 
     <attr name="dotCount" format="integer" />
     <attr name="splitSize" format="integer" />
-    <attr name="bg" format="reference"/>
+    <attr name="bg" format="reference" />
 
     <declare-styleable name="CustomVolumControlBar">
         <attr name="firstColor" />
@@ -61,15 +59,21 @@
         <attr name="splitSize" />
         <attr name="bg" />
     </declare-styleable>
-    
+
     <declare-styleable name="VoiceView">
 
     </declare-styleable>
 
     <declare-styleable name="Camera3D">
-        <attr name="image"/>
+        <attr name="image" />
         <attr name="bg" />
     </declare-styleable>
 
+    <declare-styleable name="HuaweiWeatherView" />
+
+    <declare-styleable name="CircleImageView">
+        <attr name="circle_border" format="dimension" />
+        <attr name="circle_border_color" format="color" />
+    </declare-styleable>
 
 </resources>
